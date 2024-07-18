@@ -29,3 +29,9 @@ class BookDelete(generic.DeleteView):
 
     def get_success_url(self) -> str:
         return reverse('book-list')    
+    
+class BookAdd(generic.CreateView):
+    model = BookModel
+    template_name = 'books/book-add.html'
+    context_object_name = 'book'    
+    fields = ['title', 'desctiption', 'author', 'pricee']

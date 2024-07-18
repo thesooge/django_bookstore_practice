@@ -136,5 +136,9 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 #Authentication
 AUTH_USER_MODEL = 'accounts.CustomUser'
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'book-list'
+LOGOUT_REDIRECT_URL = 'book-list'
+
+#static files
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
