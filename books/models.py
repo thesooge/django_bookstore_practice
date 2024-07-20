@@ -7,9 +7,11 @@ from django.contrib.auth import get_user_model
 class BookModel(models.Model):
 
     title = models.CharField(max_length=50)
-    desctiption = models.TextField()
-    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    pricee = models.DecimalField(decimal_places=2, max_digits=6)
+    description = models.TextField()
+    author = models.CharField(max_length=50)
+    price = models.DecimalField(decimal_places=2, max_digits=6)
+    cover = models.ImageField(upload_to='book_covers/', blank=True)
+
 
 
     def __str__(self):
@@ -17,5 +19,3 @@ class BookModel(models.Model):
     
     def get_absolute_url(self):
         return reverse('book-detail' ,args=[self.id])
-    
-    

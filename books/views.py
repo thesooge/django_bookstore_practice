@@ -15,7 +15,7 @@ class UpdateBook(generic.UpdateView):
     model = BookModel 
     template_name = 'books/book-update.html'
     context_object_name = 'book' 
-    fields = ['title', 'desctiption', 'author']
+    fields = ['title', 'description', 'author', 'cover']
 
 class BookDetail(generic.DetailView):
     model = BookModel 
@@ -34,4 +34,4 @@ class BookAdd(generic.CreateView):
     model = BookModel
     template_name = 'books/book-add.html'
     context_object_name = 'book'    
-    fields = ['title', 'desctiption', 'author', 'pricee']
+    fields = ['title', 'description', 'author', 'price','cover']
