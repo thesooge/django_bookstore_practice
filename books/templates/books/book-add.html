@@ -18,9 +18,9 @@ AddBook
                 <div class="px-5 pt-3 pb-5">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <table>
+                        
                         {{ form|crispy }}
-                        </table>
+
                         <button type="submit" class="btn btn-primary">ذخیره</button>
                     </form>
                 </div>

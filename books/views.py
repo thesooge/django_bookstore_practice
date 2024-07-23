@@ -1,6 +1,7 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, redirect
 
 from django.views import generic
+from .forms import CreateForm
 
 from .models import BookModel
 
@@ -10,6 +11,7 @@ class BookList(generic.ListView):
     model = BookModel
     template_name = 'books/book-list.html'
     context_object_name = 'book'
+    paginate_by = 4
 
 class UpdateBook(generic.UpdateView):
     model = BookModel 
@@ -34,4 +36,5 @@ class BookAdd(generic.CreateView):
     model = BookModel
     template_name = 'books/book-add.html'
     context_object_name = 'book'    
-    fields = ['title', 'description', 'author', 'price','cover']
+    fields = ['title', 'description', 'author', 'price','cover',]
+

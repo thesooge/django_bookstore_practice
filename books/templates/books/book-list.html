@@ -31,8 +31,29 @@ books
                         </div>
                     </div>
                 {% endfor %} 
+
+
+                
             </div>
         </div>    
     </form>
+
+    <footer class="text-center text-lg-start mt-5">
+            <div class="text-center">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{page_obj.previous_page_number}}">{{page_obj.previous_page_number}}</a>
+                    {{page_obj.number}}
+                    
+                
+                {% elif page_obj.has_next %}
+                    {{page_obj.number}}
+
+                    <a href="?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a>
+                {% else %}
+                    {{page_obj.number}}
+
+                {% endif %}
+            </div>
+    </footer>
 
 {% endblock content %}

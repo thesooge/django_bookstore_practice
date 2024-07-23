@@ -8,10 +8,10 @@ class BookModel(models.Model):
 
     title = models.CharField(max_length=50)
     description = models.TextField()
-    author = models.CharField(max_length=50)
+    author = models.CharField(max_length=50, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=6)
     cover = models.ImageField(upload_to='book_covers/', blank=True)
-    writer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True)
+    writer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True, null=True)
 
 
 
