@@ -13,6 +13,7 @@ class BookModel(models.Model):
     cover = models.ImageField(upload_to='book_covers/', blank=True)
     writer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True, null=True)
 
+    
 
 
     def __str__(self):
@@ -20,3 +21,10 @@ class BookModel(models.Model):
     
     def get_absolute_url(self):
         return reverse('book-detail' ,args=[self.id])
+
+
+class Comments(models.Model):
+
+    writer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    book = models.ForeignKey(BookModel, on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField()
