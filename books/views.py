@@ -1,6 +1,10 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+
 from .forms import CreateForm, CommentForm
 
 from .models import BookModel, Comments
@@ -13,7 +17,7 @@ class BookList(generic.ListView):
     context_object_name = 'book'
     paginate_by = 4
 
-class UpdateBook(generic.UpdateView):
+class UpdateBook(LoginRequiredMixin,generic.UpdateView):
     model = BookModel 
     template_name = 'books/book-update.html'
     context_object_name = 'book' 
@@ -24,6 +28,7 @@ class UpdateBook(generic.UpdateView):
 #     template_name = 'books/book-detail.html'
 #     context_object_name = 'book'     
 
+@login_required
 def BookDetail(request, pk):
     book = get_object_or_404(BookModel, pk=pk)
 
