@@ -6,6 +6,7 @@
     {% for item in cart.cart_detail.all %}
         <li>
             {{ item.book.title }} - {{ item.qauntity }} x ${{ item.book.price }} 
+            <a href="{% url 'delete_cart' item.id %}">حذف</a>
         </li>
     {% endfor %}
 </ul>

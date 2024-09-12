@@ -10,7 +10,7 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, related_name='cart_detail', on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, related_name='cart_detail', on_delete=models.DO_NOTHING)
     book = models.ForeignKey(BookModel, on_delete=models.CASCADE)
     qauntity = models.PositiveSmallIntegerField(default=1)
     price = models.PositiveIntegerField(null=True, blank=True)

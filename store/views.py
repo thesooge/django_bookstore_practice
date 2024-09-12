@@ -32,6 +32,9 @@ def add_cart(request, book_id):
 
     return redirect('cart_view')  
 
+@login_required
+def delete_cart(request, book_id):
+    cart_item = get_object_or_404(CartItem,id=book_id)
+    cart_item.delete()
 
-
-
+    return redirect('cart_view')
