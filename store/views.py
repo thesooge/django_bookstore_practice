@@ -1,22 +1,28 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.views import generic
 
 from .models import Cart, CartItem
 from books.models import BookModel
+from .forms import AddToCartForm
 # Create your views here.
 
-def cart_get(user):
-    cart = Cart.objects.get_or_create(user=user)
+def get_cart(user):
+    cart, created = Cart.objects.get_or_create(user=user)
     return cart
 
+
+@login_required
 def cart_view(request):
-    cart = cart_get(request.user)
+    cart = get_cart(request.user)
 
     return render(request, 'store/cart.html', {'cart':cart})
 
+@login_required
 def add_cart(request, book_id):
 
-    book = get_object_or_404(BookModel, id=book_id)
-    cart = cart_get(request.user)
+    book = get_object_or_404(BookModel,id=book_id)
+    cart = get_cart(request.user)
 
     cart_item, created = CartItem.objects.get_or_create(cart= cart, book= book)
 

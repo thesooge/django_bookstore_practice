@@ -29,6 +29,9 @@ post detail
                         <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{book.author}} </h5>
                         <h5 class="small my-1"><span class="text-muted">ایجاد کننده: </span>{{book.writer.username}} </h5>
                         <a href= "{% url 'book-update' book.id%}"> <button type="submit" class="btn btn-primary" >ویرایش</button></a>
+                        <a href="{% url 'cart_add' book.id %}">
+                            <button type="submit" class="btn btn-primary" >اضافه به سبد خرید</button>
+                        </a>
                         <a href= "{% url 'book-delete' book.id%}"> <button type="submit" class="btn btn-danger" >حذف</button></a>
                     </div>
                     <div class="col-xs-12 col-md-3 d-flex flex-column">
@@ -65,7 +68,7 @@ post detail
                     <h3>نظر خود را وارد کنید:</h3>
                     <form method="POST">
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form.as_p }}
                         <button type="submit" class="btn btn-primary">ارسال</button>
                     </form>
                 </div>

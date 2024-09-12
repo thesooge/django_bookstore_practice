@@ -1,5 +1,14 @@
 {% extends "_base.html" %}
 
 {% block content %}
+<h1>Your Shopping Cart</h1>
+<ul>
+    {% for item in cart.cart_detail.all %}
+        <li>
+            {{ item.book.title }} - {{ item.qauntity }} x ${{ item.book.price }} 
+        </li>
+    {% endfor %}
+</ul>
+
 
 {% endblock content %}

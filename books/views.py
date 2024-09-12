@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 
 from .forms import CreateForm, CommentForm
+from store.forms import AddToCartForm
+from store.models import CartItem
 
 from .models import BookModel, Comments
 
@@ -41,13 +43,14 @@ def BookDetail(request, pk):
             comment.book = book
             comment.writer = request.user 
             comment.save()
-            commnet_form = CommentForm()
+            commnet_form = CommentForm()      
         
     else:
         commnet_form = CommentForm()
+        form = AddToCartForm()
 
 
-    return render(request, 'books/book-detail.html', {'book' : book, 'comments': book_comments, 'form' : commnet_form})
+    return render(request, 'books/book-detail.html', {'book' : book, 'comments': book_comments, 'form' : commnet_form, 'addtocartform': form})
 
 
 class BookDelete(generic.DeleteView):

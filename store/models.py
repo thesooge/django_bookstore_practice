@@ -12,8 +12,8 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name='cart_detail', on_delete=models.CASCADE)
     book = models.ForeignKey(BookModel, on_delete=models.CASCADE)
-    qauntity = models.PositiveSmallIntegerField()
-    price = models.PositiveIntegerField()
+    qauntity = models.PositiveSmallIntegerField(default=1)
+    price = models.PositiveIntegerField(null=True, blank=True)
     total_price = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self) -> str:
